@@ -7,17 +7,9 @@ mongoose.set('useCreateIndex', true);
 const categorySchema = new Schema({
     name: {
         type: String,
-        required: true
+        required: true,
+        unique: true
     },
-    imageSrc: {
-        type: String,
-        default: ''
-    },
-    user: {
-        ref: 'user',
-        type: Schema.Types.ObjectId,
-        required: true
-    }
 })
 
 module.exports = mongoose.model('categories', categorySchema);

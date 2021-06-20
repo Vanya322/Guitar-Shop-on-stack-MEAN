@@ -24,15 +24,9 @@ app.use('/uploads', express.static('uploads'))
 
 
 const authRoutes = require('./routes/auth');
-const analyticsRoutes = require('./routes/analytics');
 const categoryRoutes = require('./routes/category');
-const orderRoutes = require('./routes/order');
-const positionRoutes = require('./routes/position');
 
-app.use('/api/auth', authRoutes);
-app.use('/api/analytics', analyticsRoutes);
-app.use('/api/category', categoryRoutes);
-app.use('/api/order', orderRoutes);
-app.use('/api/position', positionRoutes);
+app.use('/guitar.shop/auth', authRoutes);
+app.use('/guitar.shop/category', categoryRoutes);
 
 module.exports = app;

@@ -1,27 +1,11 @@
 const errorHandler = require('../utils/error-handler');
 const categoryModel = require('../models/Category');
-const positionModel = require('../models/Position');
 
 module.exports.getAll = async (req, res) => {
     try {
-        const categoryes = await categoryModel.find({
-            user: req.user.id
-        });
+        const categoryes = await categoryModel.find();
 
         res.status(200).json(categoryes);
-    }
-    catch(e) {
-        errorHandler(res, e);
-    }
-}
-
-module.exports.getById = async (req, res) => {
-    try {
-        const category = await categoryModel
-            .findById(req.params.id);
-
-        res.status(200).json(category);
-
     }
     catch(e) {
         errorHandler(res, e);
@@ -31,9 +15,7 @@ module.exports.getById = async (req, res) => {
 module.exports.remove = async (req, res) => {
     try {
         await categoryModel.findByIdAndRemove(req.params.id);
-        await positionModel.remove({
-            category: req.params.id
-        })
+
         res.status(200).json({
             message: 'Category Removed!'
         })
@@ -45,15 +27,24 @@ module.exports.remove = async (req, res) => {
 
 module.exports.create = async (req, res) => {
     try {
+        const findedCategot = await categoryModel.findOne({
+            name: req.body.name
+        })
+
+        if(findedCategot)
+            res.status(400).json({
+                message: `This category already created!`
+            })
+
         const category = new categoryModel({
             name: req.body.name,
-            user: req.user.id,
-            imageSrc: req.file ? req.file.path : ''
         })
 
         category.save();
 
-        res.status(201).json(category)
+        res.status(201).json({
+            message: `${req.body.name} category created!`
+        })
     }
     catch(e) {
         errorHandler(res, e);
@@ -61,24 +52,14 @@ module.exports.create = async (req, res) => {
 }
 
 module.exports.update = async (req, res) => {
-    let updated = {
-        name: req.body.name,
-    };
-
-    if(req.file)
-        updated.imageSrc = req.file.path
 
     try {
-        const category = await categoryModel.findOneAndUpdate(
-        {
+        await categoryModel.findByIdAndUpdate({
                 _id: req.params.id
-             },
-        {
-                $set: updated
             },
-        {
-                new: true
-            })
+            {
+                name: req.body.name
+            });
         res.status(200);
     }
     catch(e) {

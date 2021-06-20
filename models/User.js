@@ -5,6 +5,14 @@ mongoose.set('useFindAndModify', false);
 mongoose.set('useCreateIndex', true);
 
 const userSchema = new Schema({
+    name: {
+        type: String,
+        required: true,
+    },
+    surname: {
+        type: String,
+        required: true,
+    },
     email: {
         type: String,
         required: true,
