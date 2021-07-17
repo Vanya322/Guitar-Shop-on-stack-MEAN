@@ -1,0 +1,8 @@
+.flex {
+  display: flex;
+  justify-content: center;
+}
+.card-loaded {
+  text-align: center;
+  width: 250px;
+}

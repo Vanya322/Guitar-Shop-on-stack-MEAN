@@ -1,0 +1,10 @@
+
+.mat-expansion-panel p, .mat-panel-title p {
+  cursor: pointer;
+  font-weight: 500;
+  transition: .3s;
+}
+
+.mat-expansion-panel p:hover, .mat-panel-title p:hover {
+  color: blueviolet;
+}

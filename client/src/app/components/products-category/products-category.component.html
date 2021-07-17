@@ -1,0 +1,12 @@
+<mat-accordion *ngFor="let item of categoryes">
+  <mat-expansion-panel hideToggle >
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        <p>{{ item.title }}</p>
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+    <div *ngFor="let panel of item.panel">
+      <p>{{ panel }}</p>
+    </div>
+  </mat-expansion-panel>
+</mat-accordion>

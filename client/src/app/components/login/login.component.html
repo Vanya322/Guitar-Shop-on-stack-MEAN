@@ -1,0 +1,24 @@
+<div class="flex-container">
+  <mat-card class="card">
+    <mat-card-header>
+      <mat-card-title></mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <form class="login-form" [formGroup]="loginForm">
+        <mat-form-field class="example-full-width">
+          <mat-label>Логин</mat-label>
+          <input matInput formControlName="Login">
+        </mat-form-field>
+        <br>
+        <mat-form-field class="example-full-width">
+          <mat-label>Пароль</mat-label>
+          <input matInput formControlName="Password">
+        </mat-form-field>
+      </form>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-raised-button [routerLink]="['/register']">Регистрация</button>
+      <button mat-raised-button color="primary" (click)="login()">Вход</button>
+    </mat-card-actions>
+  </mat-card>
+</div>

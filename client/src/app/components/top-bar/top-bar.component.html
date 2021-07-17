@@ -1,0 +1,24 @@
+<nav mat-tab-nav-bar backgroundColor="primary">
+    <a mat-tab-link disabled > Главная </a>
+    <a mat-tab-link active="Товары" routerLink="tovars" [disabled]="!user">Товары</a>
+    <a mat-tab-link disabled>Контакты</a>
+    <div class="user-items">
+        <div class="user-confirmed" *ngIf="user">
+            <button mat-mini-fab color="primary" routerLink="cart">
+                <mat-icon>add_shopping_cart</mat-icon>
+            </button>
+            <button mat-mini-fab color="primary" (click)="logout()">
+                <mat-icon>account_circle</mat-icon>
+            </button>
+        </div>
+        <div class="user-not-confirmed" *ngIf="!user">
+            <button mat-raised-button color="basic" routerLink="login">
+                Вход
+            </button>
+            <button mat-raised-button color="basic" routerLink="register">
+                Регистрация
+            </button>
+        </div>
+        
+    </div>
+</nav> 
