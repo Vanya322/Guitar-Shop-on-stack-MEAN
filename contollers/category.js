@@ -5,7 +5,12 @@ module.exports.getAll = async (req, res) => {
     try {
         const categories = await categoryModel.find();
 
-        res.status(200).json(categories);
+        res.status(200).json(categories.map(category => {
+            return {
+                id: category._id,
+                name: category.name
+            }
+        }));
     }
     catch(e) {
         errorHandler(res, e);

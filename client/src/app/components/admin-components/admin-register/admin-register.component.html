@@ -14,8 +14,8 @@
         </mat-form-field>
         <br>
         <mat-form-field>
-          <mat-label>Email</mat-label>
-          <input matInput formControlName="email">
+          <mat-label>Login</mat-label>
+          <input matInput formControlName="login">
         </mat-form-field>
         <br>
         <mat-form-field>
@@ -31,7 +31,6 @@
       </form>
     </mat-card-content>
     <mat-card-actions>
-      <button mat-raised-button color="basic" [routerLink]="['/login']">Sign In</button>
       <button mat-raised-button color="primary" (click)="register()">Sign Up</button>
     </mat-card-actions>
   </mat-card>

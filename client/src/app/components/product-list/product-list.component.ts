@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ProductListService } from './../../services/product-list.service';
+import { ProductListService } from '../../services/product-list/product-list.service';
 import { Tovar } from 'src/app/models/model'
-import { CartService } from 'src/app/services/cart.service';
+import { CartService } from 'src/app/services/cart/cart.service';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogComponent } from './dialog/dialog/dialog.component'
 
@@ -26,7 +26,7 @@ export class ProductListComponent implements OnInit {
 
   }
 
-  addTovarToCart(tovar: Tovar) {
+  addProductToCart(product: Tovar) {
 ;
   }
 

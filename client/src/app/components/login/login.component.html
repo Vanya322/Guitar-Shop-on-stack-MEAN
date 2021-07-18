@@ -4,21 +4,21 @@
       <mat-card-title></mat-card-title>
     </mat-card-header>
     <mat-card-content>
-      <form class="login-form" [formGroup]="loginForm">
+      <form class="login-form" [formGroup]="userFormGroup">
         <mat-form-field class="example-full-width">
-          <mat-label>Логин</mat-label>
-          <input matInput formControlName="Login">
+          <mat-label>Email</mat-label>
+          <input matInput formControlName="email">
         </mat-form-field>
         <br>
         <mat-form-field class="example-full-width">
-          <mat-label>Пароль</mat-label>
-          <input matInput formControlName="Password">
+          <mat-label>Password</mat-label>
+          <input matInput formControlName="password">
         </mat-form-field>
       </form>
     </mat-card-content>
     <mat-card-actions>
-      <button mat-raised-button [routerLink]="['/register']">Регистрация</button>
-      <button mat-raised-button color="primary" (click)="login()">Вход</button>
+      <button mat-raised-button [routerLink]="['/register']">Sign Up</button>
+      <button mat-raised-button color="primary" (click)="login()">Sign In</button>
     </mat-card-actions>
   </mat-card>
 </div>

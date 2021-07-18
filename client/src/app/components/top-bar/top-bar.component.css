@@ -12,3 +12,7 @@
 .user-not-confirmed button {
   margin-top:2px;
 }
+
+.a-padding-justify {
+  justify-content: start !important;
+}

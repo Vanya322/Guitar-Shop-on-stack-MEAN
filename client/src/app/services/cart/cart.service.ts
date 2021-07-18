@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Observable, of} from 'rxjs';
 import { Tovar, User } from 'src/app/models/model'
-import { ProductListService } from './product-list.service';
-import { UserService } from './user.service';
+import { ProductListService } from '../product-list/product-list.service';
+import { UserService } from '../user/user.service';
 
 @Injectable({
   providedIn: 'root'

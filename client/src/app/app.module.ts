@@ -16,6 +16,9 @@ import { ProductsCategoryComponent } from './components/products-category/produc
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { DialogComponent } from './components/product-list/dialog/dialog/dialog.component';
+import { CategoriesComponent } from './components/admin-components/categories/categories.component';
+import { AdminRegisterComponent } from './components/admin-components/admin-register/admin-register.component';
+import { ProductsComponent } from './components/admin-components/products/products.component';
 
 
 
@@ -31,6 +34,9 @@ import { DialogComponent } from './components/product-list/dialog/dialog/dialog.
     LoginComponent,
     RegisterComponent,
     DialogComponent,
+    CategoriesComponent,
+    AdminRegisterComponent,
+    ProductsComponent,
   ],
   imports: [
     BrowserModule,

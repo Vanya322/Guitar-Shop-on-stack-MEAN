@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Tovar } from 'src/app/models/model'
-import { CartService } from '../../services/cart.service';
+import { CartService } from '../../services/cart/cart.service';
 
 @Component({
   selector: 'app-cart',
@@ -9,11 +9,11 @@ import { CartService } from '../../services/cart.service';
 })
 export class CartComponent implements OnInit {
 
-  cartTovars: Tovar[] = [];
+  cartProducts: Tovar[] = [];
   displayedColumns: string[] = ['Name', 'Description', 'Price', 'Count', 'AllPrice', 'Add', 'Drop'];
   loadingCart = true;
 
-  displayCartTovars:any = []
+  displayCartProducts:any = []
 
   constructor(
     private cartService: CartService,
@@ -22,18 +22,18 @@ export class CartComponent implements OnInit {
     }
 
   ngOnInit() {
-    this.getCartTovars();
+    this.getCartProducts();
   }
 
-  getCartTovars() {
-
-  }
-
-  deleteTovar(tovar: any) {
+  getCartProducts() {
 
   }
 
-  deleteAllTovars() {
+  deleteProduct(tovar: any) {
+
+  }
+
+  deleteAllProducts() {
 
   }
 

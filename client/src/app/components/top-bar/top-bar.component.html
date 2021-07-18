@@ -1,22 +1,47 @@
 <nav mat-tab-nav-bar backgroundColor="primary">
-    <a mat-tab-link active="Товары" routerLink="tovars">Товары</a>
-    <div class="user-items">
-        <div class="user-confirmed" *ngIf="user">
-            <button mat-mini-fab color="primary" routerLink="cart">
-                <mat-icon>add_shopping_cart</mat-icon>
-            </button>
-            <button mat-mini-fab color="primary" (click)="logout()">
-                <mat-icon>account_circle</mat-icon>
-            </button>
-        </div>
-        <div class="user-not-confirmed" *ngIf="!user">
-            <button mat-raised-button color="basic" routerLink="login">
-                Вход
-            </button>
-            <button mat-raised-button color="basic" routerLink="register">
-                Регистрация
-            </button>
-        </div>
+  <a mat-tab-link active="products" routerLink="products" [disabled]="!user">Products</a>
 
+  <button
+    mat-tab-link
+    active="admin-panel"
+    *ngIf="user?.type == 'ADMIN'"
+    mat-button [matMenuTriggerFor]="menu"
+    style="color: white"
+  >Admin Menu</button>
+  <mat-menu #menu="matMenu">
+    <a mat-tab-link
+       active="admin-register-panel"
+       routerLink="admin-panel/admin-register-panel"
+       class="a-padding-justify"
+    >Register new Admin</a>
+    <a mat-tab-link
+      active="categories-panel"
+      routerLink="admin-panel/categories-panel"
+       class="a-padding-justify"
+    >Categories panel</a>
+    <a mat-tab-link
+      active="products-panel"
+      routerLink="admin-panel/products-panel"
+      class="a-padding-justify"
+    >Products panel</a>
+  </mat-menu>
+
+  <div class="user-items">
+    <div class="user-confirmed" *ngIf="user">
+      <button mat-mini-fab color="primary" routerLink="cart">
+        <mat-icon>add_shopping_cart</mat-icon>
+      </button>
+      <button mat-mini-fab color="primary" (click)="logout()">
+        <mat-icon>account_circle</mat-icon>
+      </button>
     </div>
+    <div class="user-not-confirmed" *ngIf="!user">
+      <button mat-raised-button color="basic" routerLink="login">
+        Sign In
+      </button>
+      <button mat-raised-button color="basic" routerLink="register">
+        Sign Up
+      </button>
+    </div>
+  </div>
 </nav>

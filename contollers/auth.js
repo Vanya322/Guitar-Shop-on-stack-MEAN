@@ -33,6 +33,8 @@ module.exports.login = async (req, res) => {
 
 module.exports.register = async (req, res) => {
 
+    console.log("body",req.body)
+
     const candidate = await User.findOne({email: req.body.email});
 
     if(candidate) {
@@ -49,6 +51,7 @@ module.exports.register = async (req, res) => {
             surname: req.body.surname,
             email: req.body.email,
             password: bcrypt.hashSync(req.body.password, bcrypt.genSaltSync(10)),
+            type: req.body.type,
         });
 
         await user.save();

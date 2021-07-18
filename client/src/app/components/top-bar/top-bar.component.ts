@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { UserService } from 'src/app/services/user.service';
+import { UserService } from 'src/app/services/user/user.service';
 import { User } from 'src/app/models/model'
 import { Router } from '@angular/router';
 
@@ -16,7 +16,8 @@ export class TopBarComponent implements OnInit {
     private userService: UserService,
     private router: Router
   ) {
-
+    this.userService.userSuccessEvent
+      .subscribe((user: User) => this.user = user)
   }
 
   ngOnInit() {
@@ -25,7 +26,6 @@ export class TopBarComponent implements OnInit {
 
   logout() {
     this.userService.logout();
-    this.router.navigate(['/login']);
   }
 
 }

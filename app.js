@@ -28,7 +28,7 @@ const categoryRoutes = require('./routes/category');
 const productRoutes = require('./routes/product');
 
 app.use('/guitar.shop/auth', authRoutes);
-app.use('/guitar.shop/product', productRoutes);
-app.use('/guitar.shop/category', categoryRoutes);
+app.use('/guitar.shop/products', productRoutes);
+app.use('/guitar.shop/categories', categoryRoutes);
 
 module.exports = app;
