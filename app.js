@@ -25,8 +25,10 @@ app.use('/uploads', express.static('uploads'))
 
 const authRoutes = require('./routes/auth');
 const categoryRoutes = require('./routes/category');
+const productRoutes = require('./routes/product');
 
 app.use('/guitar.shop/auth', authRoutes);
+app.use('/guitar.shop/product', productRoutes);
 app.use('/guitar.shop/category', categoryRoutes);
 
 module.exports = app;
