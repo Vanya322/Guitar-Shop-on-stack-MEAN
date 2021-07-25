@@ -2,5 +2,19 @@ table {
   width: 30%;
 }
 .mat-column-actions {
-  width: 50px !important;
+  width: 140px !important;
 }
+.d-flex {
+  display: flex;
+}
+.add-btn-margin {
+  margin: 5px 10px 5px 5px;
+}
+.delete-btn {
+  overflow: hidden !important;
+}
+.edit-btn {
+  overflow: hidden !important;
+  margin-right: 15px;
+}
+

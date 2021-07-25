@@ -1,7 +1,7 @@
 const errorHandler = require('../utils/error-handler');
 const categoryModel = require('../models/Category');
 
-module.exports.getAll = async (req, res) => {
+getAll = async (req, res) => {
     try {
         const categories = await categoryModel.find();
 
@@ -17,7 +17,7 @@ module.exports.getAll = async (req, res) => {
     }
 }
 
-module.exports.remove = async (req, res) => {
+remove = async (req, res) => {
     try {
         await categoryModel.findByIdAndRemove(req.params.id);
 
@@ -30,7 +30,9 @@ module.exports.remove = async (req, res) => {
     }
 }
 
-module.exports.create = async (req, res) => {
+create = async (req, res) => {
+
+    console.log("BODY____CREATE",req.body)
     try {
         const searchedCategory = await categoryModel.findOne({
             name: req.body.name
@@ -43,7 +45,6 @@ module.exports.create = async (req, res) => {
 
             return;
         }
-
 
         const category = new categoryModel({
             name: req.body.name,
@@ -60,7 +61,9 @@ module.exports.create = async (req, res) => {
     }
 }
 
-module.exports.update = async (req, res) => {
+update = async (req, res) => {
+
+    console.log("BODY____UPdATE",req.body)
 
     try {
         await categoryModel.findByIdAndUpdate({
@@ -69,9 +72,13 @@ module.exports.update = async (req, res) => {
             {
                 name: req.body.name
             });
-        res.status(200);
+        res.status(200).json({
+            message: "Category Updated!"
+        });
     }
     catch(e) {
         errorHandler(res, e);
     }
 }
+
+module.exports = { getAll, create, update, remove };

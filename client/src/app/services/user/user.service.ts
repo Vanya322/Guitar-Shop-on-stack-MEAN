@@ -29,7 +29,7 @@ export class UserService {
       .subscribe((user: User) => {
       this.user = user;
       this.userSuccessEvent.emit(this.user);
-      this.router.navigate(['/products']);
+      // this.router.navigate(['/products']);
     })
   }
 

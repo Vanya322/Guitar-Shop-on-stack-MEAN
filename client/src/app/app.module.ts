@@ -19,6 +19,7 @@ import { DialogComponent } from './components/product-list/dialog/dialog/dialog.
 import { CategoriesComponent } from './components/admin-components/categories/categories.component';
 import { AdminRegisterComponent } from './components/admin-components/admin-register/admin-register.component';
 import { ProductsComponent } from './components/admin-components/products/products.component';
+import { CategoryDialogComponent } from './components/admin-components/categories/category-dialog/category-dialog.component';
 
 
 
@@ -37,6 +38,7 @@ import { ProductsComponent } from './components/admin-components/products/produc
     CategoriesComponent,
     AdminRegisterComponent,
     ProductsComponent,
+    CategoryDialogComponent,
   ],
   imports: [
     BrowserModule,
