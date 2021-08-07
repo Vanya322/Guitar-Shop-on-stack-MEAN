@@ -1,6 +1,9 @@
-html, body { 
-  height: 100%; 
+html, body {
+  height: 100%;
 }
-body { 
-  margin: 0; 
+body {
+  margin: 0;
+}
+#toast-container > div {
+  opacity:1;
 }

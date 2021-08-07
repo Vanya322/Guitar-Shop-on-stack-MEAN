@@ -3,7 +3,7 @@ import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {Product} from "../../../models/model";
 import {API_KEY} from "../../../utils/utils";
-import {ToasterModule, ToasterService} from 'angular2-toaster';
+import { ToastrHandlerService } from '../../../utils/toastr-handler.service'
 
 @Injectable({
   providedIn: 'root'
@@ -15,6 +15,7 @@ export class ProductsService {
 
   constructor(
     private http: HttpClient,
+    private toasterHandlerService: ToastrHandlerService,
   ) { }
 
   getProducts(): Observable<Product[]> {
@@ -53,7 +54,7 @@ export class ProductsService {
           this.onUpdateOrCreate.emit();
         },
         (e) => {
-          console.log(e.error.message)
+          this.toasterHandlerService.errorToaster(e.error.message)
         });
 
       return;
@@ -64,7 +65,7 @@ export class ProductsService {
         this.onUpdateOrCreate.emit();
       },
       (e) => {
-        console.log(e.error.message)
+        this.toasterHandlerService.errorToaster(e.error.message)
       });
   }
 }

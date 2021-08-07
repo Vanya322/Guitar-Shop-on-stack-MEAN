@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http'
+import { CommonModule } from '@angular/common';
 
 import { AppComponent } from './app.component';
 import { TopBarComponent } from './components/top-bar/top-bar.component';
@@ -21,7 +22,7 @@ import { AdminRegisterComponent } from './components/admin-components/admin-regi
 import { ProductsComponent } from './components/admin-components/products/products.component';
 import { CategoryDialogComponent } from './components/admin-components/categories/category-dialog/category-dialog.component';
 import { ProductDialogComponent } from './components/admin-components/products/product-dialog/product-dialog.component';
-
+import { ToastrModule } from 'ngx-toastr';
 
 
 
@@ -43,12 +44,17 @@ import { ProductDialogComponent } from './components/admin-components/products/p
     ProductDialogComponent,
   ],
   imports: [
+    CommonModule,
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    MaterialModule
+    MaterialModule,
+    ToastrModule.forRoot({
+      timeOut: 3000,
+      positionClass: 'toast-top-right'
+    }),
   ],
   providers: [],
   bootstrap: [AppComponent]
