@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Tovar } from 'src/app/models/model'
+import { Product } from 'src/app/models/model'
 import { CartService } from '../../services/cart/cart.service';
 
 @Component({
@@ -9,7 +9,7 @@ import { CartService } from '../../services/cart/cart.service';
 })
 export class CartComponent implements OnInit {
 
-  cartProducts: Tovar[] = [];
+  cartProducts: Product[] = [];
   displayedColumns: string[] = ['Name', 'Description', 'Price', 'Count', 'AllPrice', 'Add', 'Drop'];
   loadingCart = true;
 
@@ -29,7 +29,7 @@ export class CartComponent implements OnInit {
 
   }
 
-  deleteProduct(tovar: any) {
+  deleteProduct(product: any) {
 
   }
 

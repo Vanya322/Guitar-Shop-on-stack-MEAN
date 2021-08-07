@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, of} from 'rxjs';
-import { Tovar, User } from 'src/app/models/model'
+import { Product, User } from 'src/app/models/model'
 import { ProductListService } from '../product-list/product-list.service';
 import { UserService } from '../user/user.service';
 
@@ -9,9 +9,9 @@ import { UserService } from '../user/user.service';
 })
 export class CartService {
 
-  cartTovars: any = [];
+  cartProducts: any = [];
   myCart: any = [];
-  allTovatsIds: any = [];
+  allProductIds: any = [];
 
 
   constructor(
@@ -21,15 +21,15 @@ export class CartService {
 
   }
 
-  getCartTovars() {
+  getCartProducts() {
 
   }
 
-  addTovarToCart(tovar: Tovar) {
+  addProductToCart(product: Product) {
 
   }
 
-  deleteTovar(deletedTovarName: any | undefined) {
+  deleteTovar(deletedProductName: any | undefined) {
 
   }
 

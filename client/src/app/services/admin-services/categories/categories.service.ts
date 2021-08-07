@@ -15,13 +15,12 @@ export class CategoriesService {
     private http: HttpClient
   ) { }
 
-  getCategory(): Observable<Category[]> {
-    return this.http.get<Category[]>(`${API_KEY}/categories`);
+  getCategories(): Observable<Category[]> {
+    return this.http.get<Category[]>(`${API_KEY}/categories`)
   }
 
   deleteCategory(category: Category): Observable<any> {
     return this.http.delete(`${API_KEY}/categories/${category.id}`);
-
   }
 
   addOrSaveCategory(category: Category) {

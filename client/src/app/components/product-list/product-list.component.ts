@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductListService } from '../../services/product-list/product-list.service';
-import { Tovar } from 'src/app/models/model'
+import { Product } from 'src/app/models/model'
 import { CartService } from 'src/app/services/cart/cart.service';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogComponent } from './dialog/dialog/dialog.component'
@@ -12,7 +12,7 @@ import { DialogComponent } from './dialog/dialog/dialog.component'
 })
 export class ProductListComponent implements OnInit {
 
-  productList: Tovar[] | undefined;
+  productList: Product[] | undefined;
 
   constructor(
     private productListService: ProductListService,
@@ -26,7 +26,7 @@ export class ProductListComponent implements OnInit {
 
   }
 
-  addProductToCart(product: Tovar) {
+  addProductToCart(product: Product) {
 ;
   }
 

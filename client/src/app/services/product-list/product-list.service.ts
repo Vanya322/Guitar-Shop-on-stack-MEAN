@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
 import { Observable, of} from 'rxjs';
-import { Tovar } from 'src/app/models/model'
+import { Product } from 'src/app/models/model'
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductListService {
 
-  tovars: Tovar[] = [];
+  products: Product[] = [];
 
   constructor(
   ) {

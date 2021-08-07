@@ -1,11 +1,32 @@
 const errorHandler = require('../utils/error-handler');
 const productModel = require('../models/Product');
+const categoryModel = require('../models/Category');
 
 module.exports.getAll = async (req, res) => {
     try {
         const products = await productModel.find();
 
-        res.status(200).json(products);
+        for(let product of products) {
+            for(let i in product.categoryList) {
+                const categories = await categoryModel.findById(product.categoryList[i]);
+                product.categoryList[i] = {
+                    id: categories._id,
+                    name: categories.name,
+                }
+            }
+        }
+
+        res.status(200).json(products
+            .map(product => ({
+                id: product._id,
+                name: product.name,
+                categoryList: product.categoryList,
+                price: product.price,
+                description: product.description,
+                image: product.image,
+                count: product.count,
+            })
+        ));
     }
     catch(e) {
         errorHandler(res, e);
@@ -28,7 +49,7 @@ module.exports.remove = async (req, res) => {
 module.exports.create = async (req, res) => {
     if(!req.file) {
         res.status(404).json({
-            message: `Not found img!`
+            message: `Not found image!`
         });
         return;
     }
@@ -45,22 +66,12 @@ module.exports.create = async (req, res) => {
             return;
         }
 
-
         const product = new productModel({
             name: req.body.name,
             price: req.body.price,
-            img: req.file.path,
+            image: "/" + req.file.path.split("\\").splice(2).join("/"),
             description: req.body.description,
-            categoryList: [
-                {
-                    "id": "60f410c635aeb823a476db05",
-                    "name": "Guitars"
-                },
-                {
-                    "id": "60f410f835aeb823a476db0b",
-                    "name": "Gibson"
-                }
-            ],
+            categoryList: req.body.categoryList.split(",").map(item => item.trim()),
             count: req.body.count
         })
 
@@ -86,13 +97,13 @@ module.exports.update = async (req, res) => {
         updatedParams.price = req.body.price;
 
     if(req.file)
-        updatedParams.img = req.file.path;
+        updatedParams.image = "/" + req.file.path.split("\\").splice(2).join("/");
 
     if(req.body.description)
         updatedParams.description = req.body.description;
 
     if(req.body.categoryList)
-        updatedParams.categoryList = req.body.categoryList;
+        updatedParams.categoryList = req.body.categoryList.split(",").map(item => item.trim());
 
     if(req.body.count)
         updatedParams.count = req.body.count;

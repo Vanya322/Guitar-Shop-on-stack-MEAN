@@ -1,40 +1,44 @@
-<nav mat-tab-nav-bar backgroundColor="primary">
-
-  <a
-    mat-tab-link
+<mat-toolbar color="primary">
+  <button
+    mat-button
     active="products"
     routerLink="products"
     [disabled]="!user"
-  >Products</a>
+  >Products</button>
 
   <button
     active="admin-panel"
     *ngIf="user?.type == 'ADMIN'"
-    mat-button [matMenuTriggerFor]="menu"
-    style="color: white"
+    mat-button
+    [matMenuTriggerFor]="menu"
   >Admin Menu</button>
 
   <mat-menu #menu="matMenu">
-    <button  mat-menu-item>
-      <a mat-tab-link
-         routerLink="admin-panel/admin-register-panel"
-         class="a-padding-justify"
-      >Register new Admin</a>
-    </button>
+    <ng-template matMenuContent>
+      <button
+        mat-menu-item
+        routerLink="admin-panel/admin-register-panel"
+        class="a-padding-justify"
+      >
+        Register new Admin
+      </button>
 
-    <button  mat-menu-item>
-      <a mat-tab-link
-         routerLink="admin-panel/categories-panel"
-         class="a-padding-justify"
-      >Categories panel</a>
-    </button>
+      <button
+        mat-menu-item
+        routerLink="admin-panel/categories-panel"
+        class="a-padding-justify"
+      >
+        Categories panel
+      </button>
 
-    <button  mat-menu-item>
-      <a mat-tab-link
-         routerLink="admin-panel/products-panel"
-         class="a-padding-justify"
-      >Products panel</a>
-    </button>
+      <button
+        mat-menu-item
+        routerLink="admin-panel/products-panel"
+        class="a-padding-justify"
+      >
+        Products panel
+      </button>
+    </ng-template>
   </mat-menu>
 
   <div class="user-items">
@@ -55,4 +59,4 @@
       </button>
     </div>
   </div>
-</nav>
+</mat-toolbar>

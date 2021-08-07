@@ -1,0 +1,64 @@
+<h1 mat-dialog-title>{{ product.value.id ? "Edit" : "New" }} Category</h1>
+
+<div mat-dialog-content>
+  <form [formGroup]="product">
+
+    <mat-form-field appearance="fill" class="d-block">
+      <mat-label>Name</mat-label>
+      <input type="text" matInput formControlName="name">
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="d-block">
+      <mat-label>Price</mat-label>
+      <input type="text" matInput formControlName="price">
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="d-block">
+      <mat-label>Description</mat-label>
+      <input type="text" matInput formControlName="description">
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Categories</mat-label>
+      <mat-select  formControlName="categoryList" multiple>
+        <mat-option
+          *ngFor="let category of data.categories"
+          [value]="category.id"
+         >
+          {{ category.name }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="d-block">
+      <mat-label>Count</mat-label>
+      <input type="text" matInput formControlName="count">
+    </mat-form-field>
+
+    <button
+      mat-stroked-button
+      (click)="fileInput.click()"
+    >
+      {{ product.value.id ? "Change" : "Add" }} File
+    </button>
+    <input class="d-none" type="file" #fileInput (change)="onChange($event)">
+
+  </form>
+</div>
+
+<div mat-dialog-actions>
+  <button
+    mat-raised-button
+    mat-dialog-close
+  >
+    Cancel
+  </button>
+  <button
+    mat-raised-button
+    mat-dialog-close
+    color="primary"
+    (click)="addOrSaveCategory()"
+  >
+    {{ product.value.id ? "Save" : "Add" }}
+  </button>
+</div>

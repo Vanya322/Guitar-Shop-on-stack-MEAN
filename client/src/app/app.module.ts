@@ -20,6 +20,7 @@ import { CategoriesComponent } from './components/admin-components/categories/ca
 import { AdminRegisterComponent } from './components/admin-components/admin-register/admin-register.component';
 import { ProductsComponent } from './components/admin-components/products/products.component';
 import { CategoryDialogComponent } from './components/admin-components/categories/category-dialog/category-dialog.component';
+import { ProductDialogComponent } from './components/admin-components/products/product-dialog/product-dialog.component';
 
 
 
@@ -39,6 +40,7 @@ import { CategoryDialogComponent } from './components/admin-components/categorie
     AdminRegisterComponent,
     ProductsComponent,
     CategoryDialogComponent,
+    ProductDialogComponent,
   ],
   imports: [
     BrowserModule,

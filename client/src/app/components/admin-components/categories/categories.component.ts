@@ -31,7 +31,7 @@ export class CategoriesComponent implements OnInit {
 
   getCategories() {
     this.loadingCategory = true;
-    this.categoriesService.getCategory()
+    this.categoriesService.getCategories()
       .subscribe((categories: Category[]) => {
         this.categories = [...categories];
         this.loadingCategory = false;

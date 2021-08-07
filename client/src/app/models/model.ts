@@ -1,10 +1,10 @@
-export interface Tovar {
+export interface Product {
   id: string,
   name: string,
-  category: Category[],
+  categoryList: Category[],
   price: number,
   description: string,
-  img: string,
+  image: string,
   count: number,
 }
 

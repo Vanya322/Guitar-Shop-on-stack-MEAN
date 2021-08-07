@@ -13,7 +13,7 @@ const userSchema = new Schema({
         type: String,
         required: true,
     },
-    img: {
+    image: {
         type: String,
         required: true,
     },
@@ -23,10 +23,8 @@ const userSchema = new Schema({
     },
     categoryList: [
         {
-            category: {
-                ref: 'category',
-                type: Schema.Types.ObjectId
-            }
+            ref: 'category',
+            type: Schema.Types.ObjectId
         }
     ],
     count: {
