@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { EventEmitter } from '@angular/core';
 
-import { API_KEY } from "../../utils/utils";
+import { API_KEY } from "../../../utils/utils";
 
 @Injectable({
   providedIn: 'root'
@@ -16,12 +16,12 @@ export class UserService {
 
   userSuccessEvent: EventEmitter<User> = new EventEmitter();
 
-
   constructor(
     private router: Router,
     private http: HttpClient
   ) {
-    this.login({ email: 'admin@admin.ru', password:'Default123!'});
+    // this.login({ email: 'admin@admin.ru', password:'Default123!'}); //ADMIN
+    this.login({ email: 'memeber@memeber.ru', password:'Default123!'}); //MEMBER
   }
 
   login(user: Login) {
@@ -44,7 +44,7 @@ export class UserService {
 
   logout() {
     this.user = undefined;
-    this.router.navigate(['/login']);
+    this.userSuccessEvent.emit(this.user);
   }
 
 }

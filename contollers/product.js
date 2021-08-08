@@ -115,7 +115,9 @@ module.exports.update = async (req, res) => {
             {
                 ...updatedParams
             });
-        res.status(200);
+        res.status(200).json({
+            message: "Product updated!"
+        });
     }
     catch(e) {
         errorHandler(res, e);

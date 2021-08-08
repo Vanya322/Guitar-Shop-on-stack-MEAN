@@ -1,15 +1,14 @@
 <div class="flex-container">
-  <mat-card class="card" *ngFor="let product of productList">
+  <mat-card class="card" *ngFor="let product of products">
     <mat-card-header>
       <mat-card-title>{{ product.name }}</mat-card-title>
     </mat-card-header>
-    < [src]="product.image">
-    <mat-card-content>
-      <p>{{ product.description}}</p>
+    <mat-card-content >
+      <img [src]="product.image">
+      <p class="card-description">{{ product.description}}</p>
+      <p>{{ product.price | currency}}</p>
     </mat-card-content>
     <mat-card-actions>
-      <p>{{ product.price | currency}}</p>
-      <br>
       <button mat-raised-button color="primary" >Buy now</button>
       <button mat-raised-button (click)="addProductToCart(product)">В корзину</button>
     </mat-card-actions>

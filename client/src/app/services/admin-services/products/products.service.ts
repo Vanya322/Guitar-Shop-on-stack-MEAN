@@ -24,7 +24,6 @@ export class ProductsService {
 
   deleteProduct(product: Product): Observable<any> {
     return this.http.delete(`${API_KEY}/products/${product.id}`);
-
   }
 
   addOrSaveProduct(product: Product, image: File) {

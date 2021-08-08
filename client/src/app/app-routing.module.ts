@@ -16,7 +16,7 @@ const routes: Routes = [
   { path: 'admin-panel/categories-panel', component: CategoriesComponent },
   { path: 'admin-panel/products-panel', component: ProductsComponent },
 
-  { path: '', redirectTo: 'login', pathMatch: 'full'  },
+  { path: '', redirectTo: 'products', pathMatch: 'full'  },
   { path: 'products', component: ProductsMainComponent },
   { path: 'cart', component: CartComponent },
   { path: 'login', component: LoginComponent },
