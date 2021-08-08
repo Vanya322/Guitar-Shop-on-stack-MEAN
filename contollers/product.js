@@ -4,29 +4,30 @@ const categoryModel = require('../models/Category');
 
 module.exports.getAll = async (req, res) => {
     try {
-        const products = await productModel.find();
+        const foundedProducts = await productModel.find();
+        const allCategories = await categoryModel.find();
 
-        for(let product of products) {
-            for(let i in product.categoryList) {
-                const categories = await categoryModel.findById(product.categoryList[i]);
-                product.categoryList[i] = {
-                    id: categories._id,
-                    name: categories.name,
+        const products = foundedProducts
+            .map(product => {
+                const categoryList = allCategories
+                    .filter(category => product.categoryList.includes(category._id))
+                    .map(category => ({
+                        id: category._id,
+                        name: category.name
+                    }))
+
+                return {
+                    id: product._id,
+                    name: product.name,
+                    categoryList,
+                    price: product.price,
+                    description: product.description,
+                    image: product.image,
+                    count: product.count,
                 }
-            }
-        }
-
-        res.status(200).json(products
-            .map(product => ({
-                id: product._id,
-                name: product.name,
-                categoryList: product.categoryList,
-                price: product.price,
-                description: product.description,
-                image: product.image,
-                count: product.count,
             })
-        ));
+
+        res.status(200).json(products);
     }
     catch(e) {
         errorHandler(res, e);

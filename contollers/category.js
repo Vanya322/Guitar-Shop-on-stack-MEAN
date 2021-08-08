@@ -31,8 +31,6 @@ remove = async (req, res) => {
 }
 
 create = async (req, res) => {
-
-    console.log("BODY____CREATE",req.body)
     try {
         const searchedCategory = await categoryModel.findOne({
             name: req.body.name
@@ -62,9 +60,6 @@ create = async (req, res) => {
 }
 
 update = async (req, res) => {
-
-    console.log("BODY____UPdATE",req.body)
-
     try {
         await categoryModel.findByIdAndUpdate({
                 _id: req.params.id

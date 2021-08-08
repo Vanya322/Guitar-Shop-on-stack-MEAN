@@ -24,7 +24,6 @@ export class ProductListComponent implements OnInit {
     productListService.onGetProducts
       .subscribe((products: Product[]) => {
         this.products = products;
-        console.log("EMIT")
         this.onLoad.emit(false);
       })
   }
@@ -38,7 +37,7 @@ export class ProductListComponent implements OnInit {
   }
 
   addProductToCart(product: Product) {
-;
+
   }
 
   openDialog() {

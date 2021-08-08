@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { EventEmitter } from '@angular/core';
 
+import { ToastrHandlerService } from "../../../utils/toastr-handler.service";
 import { API_KEY } from "../../../utils/utils";
 
 @Injectable({
@@ -18,7 +19,8 @@ export class UserService {
 
   constructor(
     private router: Router,
-    private http: HttpClient
+    private http: HttpClient,
+    private toastr: ToastrHandlerService,
   ) {
     // this.login({ email: 'admin@admin.ru', password:'Default123!'}); //ADMIN
     this.login({ email: 'memeber@memeber.ru', password:'Default123!'}); //MEMBER
@@ -30,6 +32,9 @@ export class UserService {
       this.user = user;
       this.userSuccessEvent.emit(this.user);
       // this.router.navigate(['/products']);
+    },
+    (e) => {
+      this.toastr.errorToaster(e.error.message)
     })
   }
 
@@ -39,7 +44,10 @@ export class UserService {
         this.user = user;
         this.userSuccessEvent.emit(this.user);
         this.router.navigate(['/products']);
-      })
+      },
+        (e) => {
+          this.toastr.errorToaster(e.error.message)
+        })
   }
 
   logout() {

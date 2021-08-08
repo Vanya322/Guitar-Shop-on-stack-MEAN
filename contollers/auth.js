@@ -1,12 +1,13 @@
 const bcrypt = require('bcryptjs');
 
-const User = require('../models/User');
+const cartModel = require('../models/Cart');
+const userModel = require('../models/User');
 const keys = require('../config/keys')
 const errorHandler = require('../utils/error-handler')
 
 module.exports.login = async (req, res) => {
 
-    const candidate = await User.findOne({
+    const candidate = await userModel.findOne({
         email: req.body.email,
     });
 
@@ -17,11 +18,16 @@ module.exports.login = async (req, res) => {
         return;
     }
 
-
     const passwordCheck = bcrypt.compareSync(req.body.password, candidate.password);
 
     if(candidate && passwordCheck) {
-        res.status(200).json(candidate);
+        res.status(200).json({
+            id: candidate._id,
+            name: candidate.name,
+            surname: candidate.surname,
+            address: candidate.address,
+            type: candidate.type,
+        });
         return;
     }
 
@@ -33,9 +39,7 @@ module.exports.login = async (req, res) => {
 
 module.exports.register = async (req, res) => {
 
-    console.log("body",req.body)
-
-    const candidate = await User.findOne({email: req.body.email});
+    const candidate = await userModel.findOne({email: req.body.email});
 
     if(candidate) {
         res.status(409).json({
@@ -46,7 +50,7 @@ module.exports.register = async (req, res) => {
 
     try {
 
-        const user = new User({
+        const user = new userModel({
             name: req.body.name,
             surname: req.body.surname,
             email: req.body.email,
@@ -55,11 +59,23 @@ module.exports.register = async (req, res) => {
         });
 
         await user.save();
-        res.status(201).json(user);
+
+        const cart = new cartModel({
+            userId: user._id,
+            products: [],
+        })
+
+        cart.save();
+
+        res.status(201).json({
+            id: user._id,
+            name: user.name,
+            surname: user.surname,
+            address: user.address,
+            type: user.type,
+        });
     }
     catch(e) {
         errorHandler(res, e);
     }
-
-
 }

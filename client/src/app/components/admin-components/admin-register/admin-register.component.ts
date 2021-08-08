@@ -28,6 +28,6 @@ export class AdminRegisterComponent implements OnInit {
   }
 
   register() {
-    console.log({...this.userFormGroup.value, type: "ADMIN"})
+    this.userService.register({...this.userFormGroup.value, type: "ADMIN"})
   }
 }
