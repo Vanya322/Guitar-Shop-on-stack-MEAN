@@ -1,9 +1,10 @@
 import {EventEmitter, Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
-import {Product} from "../../../models/model";
+import {Product, ProductDto} from "../../../models/product.model";
 import {API_KEY} from "../../../utils/utils";
 import { ToastrHandlerService } from '../../../utils/toastr-handler.service'
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -19,7 +20,10 @@ export class ProductsService {
   ) { }
 
   getProducts(): Observable<Product[]> {
-    return this.http.get<Product[]>(`${API_KEY}/products`);
+    return this.http.get<ProductDto[]>(`${API_KEY}/products`)
+      .pipe(
+        map(products => products.map(product => Product.toModel(product)))
+      );
   }
 
   deleteProduct(product: Product): Observable<any> {

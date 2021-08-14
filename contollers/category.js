@@ -5,12 +5,7 @@ getAll = async (req, res) => {
     try {
         const categories = await categoryModel.find();
 
-        res.status(200).json(categories.map(category => {
-            return {
-                id: category._id,
-                name: category.name
-            }
-        }));
+        res.status(200).json(categories);
     }
     catch(e) {
         errorHandler(res, e);

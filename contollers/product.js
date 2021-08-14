@@ -9,22 +9,10 @@ module.exports.getAll = async (req, res) => {
 
         const products = foundedProducts
             .map(product => {
-                const categoryList = allCategories
+                product.categoryList =  allCategories
                     .filter(category => product.categoryList.includes(category._id))
-                    .map(category => ({
-                        id: category._id,
-                        name: category.name
-                    }))
-
-                return {
-                    id: product._id,
-                    name: product.name,
-                    categoryList,
-                    price: product.price,
-                    description: product.description,
-                    image: product.image,
-                    count: product.count,
-                }
+                
+                return product;
             })
 
         res.status(200).json(products);

@@ -25,22 +25,10 @@ module.exports.getCart = async (req, res) => {
             return {
                 ...allProducts.find(product => product._id === item.productId)
                     .map(product => {
-                        const categoryList = allCategories
+                        product.categoryList = allCategories
                             .filter(category => product.categoryList.includes(category._id))
-                            .map(category => ({
-                                id: category._id,
-                                name: category.name
-                            }))
 
-                        return {
-                            id: product._id,
-                            name: product.name,
-                            categoryList,
-                            price: product.price,
-                            description: product.description,
-                            image: product.image,
-                            count: product.count,
-                        }
+                        return product;
                     }),
                 countInCart: item.countInCart,
             };

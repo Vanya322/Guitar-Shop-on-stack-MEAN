@@ -21,13 +21,7 @@ module.exports.login = async (req, res) => {
     const passwordCheck = bcrypt.compareSync(req.body.password, candidate.password);
 
     if(candidate && passwordCheck) {
-        res.status(200).json({
-            id: candidate._id,
-            name: candidate.name,
-            surname: candidate.surname,
-            address: candidate.address,
-            type: candidate.type,
-        });
+        res.status(200).json(candidate);
         return;
     }
 
@@ -67,13 +61,7 @@ module.exports.register = async (req, res) => {
 
         cart.save();
 
-        res.status(201).json({
-            id: user._id,
-            name: user.name,
-            surname: user.surname,
-            address: user.address,
-            type: user.type,
-        });
+        res.status(201).json(user);
     }
     catch(e) {
         errorHandler(res, e);

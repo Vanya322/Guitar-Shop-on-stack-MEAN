@@ -1,9 +1,11 @@
 import {EventEmitter, Injectable} from '@angular/core';
 import { Observable } from 'rxjs';
-import {CartProduct, User} from 'src/app/models/model'
+import {CartProduct, CartProductDto} from 'src/app/models/cart-product.model'
+import {User, UserDto} from 'src/app/models/user.model'
 import { HttpClient } from "@angular/common/http";
 import { API_KEY } from "../../../utils/utils";
 import {UserService} from "../user/user.service";
+import { map } from 'rxjs/operators'
 
 @Injectable({
   providedIn: 'root'
@@ -24,7 +26,10 @@ export class CartService {
   }
 
   getCartProducts():Observable<CartProduct[]> {
-    return this.http.get<CartProduct[] | []>(`${API_KEY}/carts/${this.user!.id}`);
+    return this.http.get<CartProductDto[]>(`${API_KEY}/carts/${this.user!.id}`)  
+      .pipe(
+        map(products => products.map(product => CartProduct.toModel(product)))
+      )
   }
 
   addProductToCart(product: CartProduct) {

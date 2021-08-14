@@ -2,7 +2,8 @@ import {EventEmitter, Injectable} from '@angular/core';
 import { Observable } from "rxjs";
 import { HttpClient } from "@angular/common/http";
 import { API_KEY } from '../../../utils/utils';
-import { Category } from "../../../models/model";
+import { Category, CategoryDto } from "../../../models/category.model";
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +17,10 @@ export class CategoriesService {
   ) { }
 
   getCategories(): Observable<Category[]> {
-    return this.http.get<Category[]>(`${API_KEY}/categories`)
+    return this.http.get<CategoryDto[]>(`${API_KEY}/categories`)
+      .pipe(
+        map(categories => categories.map(category => Category.toModel(category)))
+      )
   }
 
   deleteCategory(category: Category): Observable<any> {
@@ -26,15 +30,15 @@ export class CategoriesService {
   addOrSaveCategory(category: Category) {
     if(category.id)
       return this.http.put(`${API_KEY}/categories/${category.id}`, {
+          name: category.name
+        }).subscribe(() => {
+          this.onUpdateOrCreate.emit();
+        });
+
+    return this.http.post(`${API_KEY}/categories`, {
         name: category.name
       }).subscribe(() => {
-        this.onUpdateOrCreate.emit();
-      });
-
-   return this.http.post(`${API_KEY}/categories`, {
-      name: category.name
-    }).subscribe(() => {
-     this.onUpdateOrCreate.emit();
-   });
+      this.onUpdateOrCreate.emit();
+    });
   }
 }

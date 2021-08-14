@@ -10,15 +10,15 @@ export class ProductsCategoryComponent implements OnInit {
 
   categoryes = [
     {
-      title: 'Инструмент',
+      title: 'Instrument Type',
       panel: [
         'Guitars',
         'Drum',
-        'Keybord'
+        'Keyboard'
       ]
     },
     {
-      title: 'Производиль',
+      title: 'Creator',
       panel: [
         'Gibson',
         'Epiphone',

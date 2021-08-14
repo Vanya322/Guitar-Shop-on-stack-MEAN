@@ -1,6 +1,6 @@
 import { EventEmitter, Injectable } from '@angular/core';
 import { Observable, of} from 'rxjs';
-import { Product } from 'src/app/models/model'
+import { Product, ProductDto } from 'src/app/models/product.model'
 import { API_KEY } from "../../../utils/utils";
 import { HttpClient } from "@angular/common/http";
 
@@ -18,9 +18,9 @@ export class ProductListService {
 
 
   getProducts() {
-    this.http.get<Product[]>(`${API_KEY}/products`)
+    this.http.get<ProductDto[]>(`${API_KEY}/products`)
       .subscribe((products) => {
-        this.products = products;
+        this.products = products.map(product => Product.toModel(product));
         this.onGetProducts.emit(this.products)
       })
   }
