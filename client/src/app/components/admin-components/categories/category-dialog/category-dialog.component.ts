@@ -1,6 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { Category } from "../../../../models/model";
+import { Category } from "../../../../models/category.model";
 import { FormControl, FormGroup } from '@angular/forms'
 import { CategoriesService } from '../../../../services/admin-services/categories/categories.service'
 

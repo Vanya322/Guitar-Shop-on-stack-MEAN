@@ -17,6 +17,7 @@ const cartSchema = new Schema({
             },
             countInCart: {
                 type: Number,
+                required: true,
             }
         }
     ]

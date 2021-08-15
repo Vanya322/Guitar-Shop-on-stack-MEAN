@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Category } from "../../../models/model";
+import { Category } from "../../../models/category.model";
 import { CategoriesService } from "../../../services/admin-services/categories/categories.service";
 import { MatDialog } from '@angular/material/dialog';
 import { CategoryDialogComponent } from './category-dialog/category-dialog.component';

@@ -1,7 +1,7 @@
 const errorHandler = require('../utils/error-handler');
 const categoryModel = require('../models/Category');
 
-getAll = async (req, res) => {
+module.exports.getAll = async (req, res) => {
     try {
         const categories = await categoryModel.find();
 
@@ -12,7 +12,7 @@ getAll = async (req, res) => {
     }
 }
 
-remove = async (req, res) => {
+module.exports.remove = async (req, res) => {
     try {
         await categoryModel.findByIdAndRemove(req.params.id);
 
@@ -25,7 +25,7 @@ remove = async (req, res) => {
     }
 }
 
-create = async (req, res) => {
+module.exports.create = async (req, res) => {
     try {
         const searchedCategory = await categoryModel.findOne({
             name: req.body.name
@@ -54,7 +54,7 @@ create = async (req, res) => {
     }
 }
 
-update = async (req, res) => {
+module.exports.update = async (req, res) => {
     try {
         await categoryModel.findByIdAndUpdate({
                 _id: req.params.id
@@ -70,5 +70,3 @@ update = async (req, res) => {
         errorHandler(res, e);
     }
 }
-
-module.exports = { getAll, create, update, remove };

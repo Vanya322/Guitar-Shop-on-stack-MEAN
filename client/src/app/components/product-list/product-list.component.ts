@@ -1,6 +1,6 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { ProductListService } from '../../services/member-services/product-list/product-list.service';
-import { Product } from 'src/app/models/model'
+import { Product } from 'src/app/models/product.model'
 import { CartService } from 'src/app/services/member-services/cart/cart.service';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogComponent } from './dialog/dialog/dialog.component'

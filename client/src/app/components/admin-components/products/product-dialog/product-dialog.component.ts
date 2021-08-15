@@ -1,7 +1,8 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {FormControl, FormGroup} from "@angular/forms";
 import {MAT_DIALOG_DATA} from "@angular/material/dialog";
-import {Category, Product} from "../../../../models/model";
+import { Product } from "../../../../models/product.model";
+import { Category } from "../../../../models/category.model";
 import { ProductsService } from '../../../../services/admin-services/products/products.service'
 @Component({
   selector: 'app-product-dialog',
