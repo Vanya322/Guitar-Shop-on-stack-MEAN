@@ -37,7 +37,7 @@ export class ProductListComponent implements OnInit {
   }
 
   addProductToCart(product: Product) {
-
+    this.cartService.addProductToCart(product)
   }
 
   openDialog() {

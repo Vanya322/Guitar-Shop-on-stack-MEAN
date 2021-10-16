@@ -6,6 +6,7 @@ import { HttpClient } from "@angular/common/http";
 import { API_KEY } from "../../../utils/utils";
 import {UserService} from "../user/user.service";
 import { map } from 'rxjs/operators'
+import { Product } from 'src/app/models/product.model';
 
 @Injectable({
   providedIn: 'root'
@@ -32,22 +33,25 @@ export class CartService {
       )
   }
 
-  addProductToCart(product: CartProduct) {
-    // this.http.put(`${API_KEY}/carts/${product.id}`, {})
-    //   .subscribe(() => {
-    //     this.onUpdateOrCreate.emit();
-    //   });
+  addProductToCart(product: Product) {
+    this.http.put(`${API_KEY}/carts/${this.user!.id}/${product.id}`, {})
+      .subscribe(() => {
+        this.onUpdateOrCreate.emit();
+      });
   }
 
-  deleteProduct(product: CartProduct) {
-    // this.http.delete(`${API_KEY}/carts/${product.id}`)
-    //   .subscribe(() => {
-    //     this.onUpdateOrCreate.emit();
-    //   });
+  deleteProduct(product: Product) {
+    this.http.delete(`${API_KEY}/carts/${this.user!.id}/${product.id}`)
+      .subscribe(() => {
+        this.onUpdateOrCreate.emit();
+      });
   }
 
   deleteAllProducts() {
-    this.http.get<CartProduct[]>(`${API_KEY}/carts`);
+    this.http.delete<CartProduct[]>(`${API_KEY}/carts/${this.user!.id}`)
+      .subscribe(() => {
+        this.onUpdateOrCreate.emit();
+      });
   }
 
 }

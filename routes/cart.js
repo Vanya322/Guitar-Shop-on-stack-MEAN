@@ -5,9 +5,9 @@ const controller = require('../contollers/cart')
 
 router.get('/:userId/', controller.getCart)
 
-router.put('/:userId', controller.addToCart)
+router.put('/:userId/:productId/', controller.addToCart)
 
-router.delete('/:userId/:productId', controller.removeById)
+router.delete('/:userId/:productId/', controller.removeById)
 
 router.delete('/:userId/', controller.removeAll)
 

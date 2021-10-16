@@ -22,11 +22,6 @@ module.exports.getCart = async (req, res) => {
 
             let product = allProducts.find(product => String(product._id) == String(item.productId));
 
-            console.log("product__", {
-                ...product._doc,
-                categoryList: allCategories.filter(category => product.categoryList.includes(category._id)),
-                countInCart: item.countInCart,
-            });
             return {
                 ...product._doc,
                 categoryList: allCategories.filter(category => product.categoryList.includes(category._id)),
@@ -50,16 +45,24 @@ module.exports.addToCart = async (req, res) => {
     }
     try {
 
+        const productId = req.params.productId;
+        if(!productId) {
+            res.status(404).json({
+                message: "Product not founded!"
+            })
+            return;
+        }
+
         const cart = await cartModel.findOne({
             userId: req.params.userId,
         });
 
-        const foundProduct = cart.products.find(item => item.productId == req.body.productId);
+        const foundProduct = cart.products.find(item => item.productId == productId);
 
         if(foundProduct) {
 
             const updatedProducts = cart.products.map(item => {
-                    if(item.productId == req.body.productId) {
+                    if(item.productId == productId) {
                         item.countInCart++;
                     }
                     return item;
@@ -79,16 +82,16 @@ module.exports.addToCart = async (req, res) => {
         }
 
         cart.products.push({
-                productId: req.body.productId,
-                countInCart: req.body.countInCart,
-            })
+            productId,
+            countInCart: 1,
+        })
         
         await cartModel.findOneAndUpdate({
-                userId: req.params.userId,
-            },
-            {
-                products: [...cart.products]
-            })
+            userId: req.params.userId,
+        },
+        {
+            products: [...cart.products]
+        })
 
         res.status(200).json({
             message: "Product added to cart!"
@@ -109,35 +112,15 @@ module.exports.removeById = async (req, res) => {
     }
     try {
 
-        const cart = await cartModel.findById(req.params.id)
+        const cart = await cartModel.findOne({
+            userId: req.params.userId,
+        });
 
         const foundProduct = cart.products.find(item => item.productId == req.params.productId);
 
         if(foundProduct) {
-            
-            if(foundProduct.countInCart > 1) {
 
-                const updatedProducts = cart.products.map(item => {
-                    if(item.productId == req.params.productId) {
-                        item.countInCart--;
-                    }
-                    return item;
-                })
-            
-                await cartModel.findOneAndUpdate({
-                        userId: req.params.userId,
-                    },
-                    {
-                        products: [...updatedProducts]
-                    });
-    
-                res.status(200).json({
-                    message: "Product deleted from cart!"
-                })
-                return;
-            }
-
-            const updatedProducts = cart.products.filter(item => item.productId != req.params.productId)
+            const updatedProducts = cart.products.filter(item => String(item.productId) != String(foundProduct.productId))
         
             await cartModel.findOneAndUpdate({
                     userId: req.params.userId,

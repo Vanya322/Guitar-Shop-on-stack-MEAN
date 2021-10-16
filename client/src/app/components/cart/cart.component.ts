@@ -32,7 +32,7 @@ export class CartComponent implements OnInit {
     if(this.userService.user) {
       this.getCartProducts()
     }
- }
+  }
 
   getCartProducts() {
     this.loadingCart = true;
