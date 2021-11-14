@@ -3,7 +3,6 @@ import { ProductListService } from '../../services/member-services/product-list/
 import { Product } from 'src/app/models/product.model'
 import { CartService } from 'src/app/services/member-services/cart/cart.service';
 import { MatDialog } from '@angular/material/dialog';
-import { DialogComponent } from './dialog/dialog/dialog.component'
 
 @Component({
   selector: 'app-product-list',
@@ -13,6 +12,7 @@ import { DialogComponent } from './dialog/dialog/dialog.component'
 export class ProductListComponent implements OnInit {
 
   products: Product[] | undefined;
+  productCounts: {[k: string]: any} = {};
 
   @Output() onLoad = new EventEmitter()
 
@@ -24,6 +24,9 @@ export class ProductListComponent implements OnInit {
     productListService.onGetProducts
       .subscribe((products: Product[]) => {
         this.products = products;
+        this.products.forEach((it) => {
+          this.productCounts[it.id] = 1;
+        })
         this.onLoad.emit(false);
       })
   }
@@ -36,12 +39,7 @@ export class ProductListComponent implements OnInit {
     this.productListService.getProducts();
   }
 
-  addProductToCart(product: Product) {
-    this.cartService.addProductToCart(product)
+  addProductToCart(product: Product, count: Number) {
+    this.cartService.addProductToCart(product, count)
   }
-
-  openDialog() {
-    this.dialog.open(DialogComponent);
-  }
-
 }

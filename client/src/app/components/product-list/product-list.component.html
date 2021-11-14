@@ -9,8 +9,13 @@
       <p>{{ product.price | currency}}</p>
     </mat-card-content>
     <mat-card-actions>
-      <button mat-raised-button color="primary" >Buy now</button>
-      <button mat-raised-button (click)="addProductToCart(product)">Put in Cart</button>
+      <mat-form-field class="prod-count">
+        <input matInput type="number" min="1" [(ngModel)]="productCounts[product.id]">
+      </mat-form-field>
+      <div class="d-flex">
+        <button mat-raised-button color="primary" >Buy now</button>
+        <button mat-raised-button (click)="addProductToCart(product, productCounts[product.id])">Put in Cart</button>
+      </div>
     </mat-card-actions>
   </mat-card>
 </div>

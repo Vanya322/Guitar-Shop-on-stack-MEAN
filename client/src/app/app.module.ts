@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http'
 import { CommonModule } from '@angular/common';
 
@@ -16,7 +16,6 @@ import { ProductsMainComponent } from './components/products-main/products-main.
 import { ProductsCategoryComponent } from './components/products-category/products-category.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
-import { DialogComponent } from './components/product-list/dialog/dialog/dialog.component';
 import { CategoriesComponent } from './components/admin-components/categories/categories.component';
 import { AdminRegisterComponent } from './components/admin-components/admin-register/admin-register.component';
 import { ProductsComponent } from './components/admin-components/products/products.component';
@@ -36,7 +35,6 @@ import { ToastrModule } from 'ngx-toastr';
     ProductsCategoryComponent,
     LoginComponent,
     RegisterComponent,
-    DialogComponent,
     CategoriesComponent,
     AdminRegisterComponent,
     ProductsComponent,
@@ -47,6 +45,7 @@ import { ToastrModule } from 'ngx-toastr';
     CommonModule,
     BrowserModule,
     AppRoutingModule,
+    FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
     BrowserAnimationsModule,

@@ -18,3 +18,12 @@ img {
   height: 50px;
   overflow-y: hidden;
 }
+.d-flex {
+  display: flex;
+}
+.prod-count-container {
+  align-items: center;
+}
+.prod-count {
+  width: 30px;
+}

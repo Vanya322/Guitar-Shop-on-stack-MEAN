@@ -46,6 +46,10 @@ export class CartComponent implements OnInit {
       })
   }
 
+  changeCount(product: CartProduct) {
+    this.cartService.updateProduct(product);
+  }
+
   deleteProduct(product: CartProduct) {
     this.cartService.deleteProduct(product);
   }

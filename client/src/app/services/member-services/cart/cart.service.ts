@@ -27,17 +27,26 @@ export class CartService {
   }
 
   getCartProducts():Observable<CartProduct[]> {
-    return this.http.get<CartProductDto[]>(`${API_KEY}/carts/${this.user!.id}`)  
+    return this.http.get<CartProductDto[]>(`${API_KEY}/carts/${this.user!.id}`)
       .pipe(
         map(products => products.map(product => CartProduct.toModel(product)))
       )
   }
 
-  addProductToCart(product: Product) {
-    this.http.put(`${API_KEY}/carts/${this.user!.id}/${product.id}`, {})
+  addProductToCart(product: Product, count: Number) {
+    this.http.put(`${API_KEY}/carts/add/${this.user!.id}/${product.id}`, {
+      count,
+    })
       .subscribe(() => {
         this.onUpdateOrCreate.emit();
       });
+  }
+
+  updateProduct(product: CartProduct) {
+    this.http.put(`${API_KEY}/carts/update/${this.user!.id}`,{
+      product,
+    })
+      .subscribe(() => {});
   }
 
   deleteProduct(product: Product) {

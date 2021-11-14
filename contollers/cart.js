@@ -63,7 +63,7 @@ module.exports.addToCart = async (req, res) => {
 
             const updatedProducts = cart.products.map(item => {
                     if(item.productId == productId) {
-                        item.countInCart++;
+                        item.countInCart += req.body.count;
                     }
                     return item;
                 })
@@ -83,7 +83,7 @@ module.exports.addToCart = async (req, res) => {
 
         cart.products.push({
             productId,
-            countInCart: 1,
+            countInCart: req.body.count,
         })
         
         await cartModel.findOneAndUpdate({
@@ -97,6 +97,42 @@ module.exports.addToCart = async (req, res) => {
             message: "Product added to cart!"
         })
 
+    }
+    catch(e) {
+        errorHandler(res, e);
+    }
+}
+
+module.exports.updateProductInCart = async (req, res) => {
+    if(!req.params.userId){
+        res.status(404).json({
+            message: "User not founded!"
+        })
+        return;
+    }
+
+    try {
+        const cart = await cartModel.findOne({
+            userId: req.params.userId,
+        });
+
+        const updatedProduct = req.body.product;
+
+        const updatedProducts = cart.products.map(item => updatedProduct.id == item.productId ? {
+            productId: updatedProduct.id,
+            countInCart: updatedProduct.countInCart,
+        } : item )
+
+        await cartModel.findOneAndUpdate({
+                userId: req.params.userId,
+            },
+            {
+                products: [...updatedProducts]
+            });
+
+        res.status(200).json({
+            message: "Product deleted from cart!"
+        })
     }
     catch(e) {
         errorHandler(res, e);
