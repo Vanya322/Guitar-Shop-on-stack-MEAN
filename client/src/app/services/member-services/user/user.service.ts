@@ -28,7 +28,7 @@ export class UserService {
     private toastr: ToastrHandlerService,
   ) {
     // this.login({ email: 'admin@admin.ru', password:'Default123!'}); //ADMIN
-    this.login({ email: 'memeber@memeber.ru', password:'Default123!'}); //MEMBER
+     this.login({ email: 'memeber@memeber.ru', password:'Default123!'}); //MEMBER
   }
 
   login(login: Login) {

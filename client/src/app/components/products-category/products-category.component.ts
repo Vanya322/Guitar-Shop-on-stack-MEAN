@@ -8,13 +8,16 @@ import { ProductListService } from 'src/app/services/member-services/product-lis
 })
 export class ProductsCategoryComponent implements OnInit {
 
-  categoryes = [
+  categories = [
     {
-      title: 'Instrument Type',
+      title: 'Акции',
+    },
+    {
+      title: 'Инструменты',
       panel: [
-        'Guitars',
-        'Drum',
-        'Keyboard'
+        'Гитары',
+        'Ударные',
+        'Клавишные'
       ]
     },
     {

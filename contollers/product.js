@@ -8,12 +8,10 @@ module.exports.getAll = async (req, res) => {
         const allCategories = await categoryModel.find();
 
         const products = foundedProducts
-            .map(product => {
-                product.categoryList =  allCategories
-                    .filter(category => product.categoryList.includes(category._id))
-                
-                return product;
-            })
+            .map(product => ({
+                ...product._doc,
+                categoryList: allCategories.filter(category => product.categoryList.includes(category._id))
+            }))
 
         res.status(200).json(products);
     }

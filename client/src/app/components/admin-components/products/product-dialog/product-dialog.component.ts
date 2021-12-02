@@ -19,7 +19,7 @@ export class ProductDialogComponent implements OnInit {
     price: new FormControl(this.data.product.price),
     description: new FormControl(this.data.product.description),
     count: new FormControl(this.data.product.count),
-    categoryList: new FormControl(this.data.product.categoryList.map(category => category.id)),
+    categoryList: new FormControl(this.data.product.categoryList),
   });
 
   constructor(

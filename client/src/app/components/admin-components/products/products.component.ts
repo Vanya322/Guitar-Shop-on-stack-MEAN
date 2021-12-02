@@ -64,6 +64,6 @@ export class ProductsComponent implements OnInit {
   }
 
   getCategoryList(categoryList: Category[]) {
-    return categoryList.map(category => category.name)
+    return categoryList.map(category => category.name).join(", ")
   }
 }

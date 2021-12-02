@@ -1,9 +1,12 @@
+<div class="title">
+  <h2>Все товары</h2>
+</div>
 <div class="flex-container">
   <mat-card class="card" *ngFor="let product of products">
     <mat-card-header>
       <mat-card-title>{{ product.name }}</mat-card-title>
     </mat-card-header>
-    <mat-card-content >
+    <mat-card-content>
       <img [src]="product.image">
       <p class="card-description">{{ product.description}}</p>
       <p>{{ product.price | currency}}</p>
@@ -13,8 +16,8 @@
         <input matInput type="number" min="1" [(ngModel)]="productCounts[product.id]">
       </mat-form-field>
       <div class="d-flex">
-        <button mat-raised-button color="primary" >Buy now</button>
-        <button mat-raised-button (click)="addProductToCart(product, productCounts[product.id])">Put in Cart</button>
+        <button mat-raised-button color="primary" >Купить</button>
+        <button mat-raised-button (click)="addProductToCart(product, productCounts[product.id])">В корзину</button>
       </div>
     </mat-card-actions>
   </mat-card>

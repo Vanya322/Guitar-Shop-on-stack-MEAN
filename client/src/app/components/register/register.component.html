@@ -4,12 +4,12 @@
       <form class="login-form" [formGroup]="userFormGroup">
 
         <mat-form-field>
-          <mat-label>Name</mat-label>
+          <mat-label>Имя</mat-label>
           <input matInput formControlName="name">
         </mat-form-field>
         <br>
         <mat-form-field>
-          <mat-label>Surname</mat-label>
+          <mat-label>Фамилия</mat-label>
           <input matInput formControlName="surname">
         </mat-form-field>
         <br>
@@ -19,20 +19,20 @@
         </mat-form-field>
         <br>
         <mat-form-field>
-          <mat-label>Password</mat-label>
+          <mat-label>Пароль</mat-label>
           <input matInput formControlName="password">
         </mat-form-field>
         <br>
         <mat-form-field>
-          <mat-label>Address</mat-label>
+          <mat-label>Адрес</mat-label>
           <input matInput formControlName="address">
         </mat-form-field>
         <br>
       </form>
     </mat-card-content>
     <mat-card-actions>
-      <button mat-raised-button color="basic" [routerLink]="['/login']">Sign In</button>
-      <button mat-raised-button color="primary" (click)="register()">Sign Up</button>
+      <button mat-raised-button color="basic" [routerLink]="['/login']">Вход</button>
+      <button mat-raised-button color="primary" (click)="register()">Регистрация</button>
     </mat-card-actions>
   </mat-card>
 </div>

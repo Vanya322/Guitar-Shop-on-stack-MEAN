@@ -1,16 +1,17 @@
 <mat-toolbar color="primary">
+  <img class="logo" src="assets/images/logo2.png">
   <button
     mat-button
     active="products"
     routerLink="products"
-  >Products</button>
+  >Товары</button>
 
   <button
     active="admin-panel"
     *ngIf="user?.type == 'ADMIN'"
     mat-button
     [matMenuTriggerFor]="menu"
-  >Admin Menu</button>
+  >Меню администратора</button>
 
   <mat-menu #menu="matMenu">
     <ng-template matMenuContent>
@@ -19,7 +20,7 @@
         routerLink="admin-panel/admin-register-panel"
         class="a-padding-justify"
       >
-        Register new Admin
+        Регистрация нового админа
       </button>
 
       <button
@@ -27,7 +28,7 @@
         routerLink="admin-panel/categories-panel"
         class="a-padding-justify"
       >
-        Categories panel
+        Панель категорий
       </button>
 
       <button
@@ -35,7 +36,7 @@
         routerLink="admin-panel/products-panel"
         class="a-padding-justify"
       >
-        Products panel
+        Панель товаров
       </button>
     </ng-template>
   </mat-menu>
@@ -51,10 +52,10 @@
     </div>
     <div class="user-not-confirmed" *ngIf="!user">
       <button mat-raised-button color="basic" routerLink="login">
-        Sign In
+        Вход
       </button>
       <button mat-raised-button color="basic" routerLink="register">
-        Sign Up
+        Регистрация
       </button>
     </div>
   </div>

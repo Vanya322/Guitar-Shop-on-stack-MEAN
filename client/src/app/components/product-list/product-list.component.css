@@ -16,7 +16,7 @@ img {
 }
 .card-description {
   height: 50px;
-  overflow-y: hidden;
+  overflow-y: auto;
 }
 .d-flex {
   display: flex;
@@ -26,4 +26,7 @@ img {
 }
 .prod-count {
   width: 30px;
+}
+.title {
+  padding-left: 20px;
 }
