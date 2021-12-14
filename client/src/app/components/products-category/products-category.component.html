@@ -1,7 +1,7 @@
 <div class="product-filter">
   <mat-card>
     <p class="sail">
-      <mat-checkbox (click)="changeFilter('Акции')">Акции</mat-checkbox>
+      <mat-checkbox (click)="changeFilter('Акции')" color="primary">Акции</mat-checkbox>
     </p>
   </mat-card>
   <mat-accordion *ngFor="let item of categories">
@@ -12,7 +12,7 @@
         </mat-panel-title>
       </mat-expansion-panel-header>
       <div *ngFor="let panel of item.panel">
-        <mat-checkbox (click)="changeFilter(panel)">{{panel}}</mat-checkbox>
+        <mat-checkbox (click)="changeFilter(panel)" color="primary">{{panel}}</mat-checkbox>
       </div>
     </mat-expansion-panel>
   </mat-accordion>

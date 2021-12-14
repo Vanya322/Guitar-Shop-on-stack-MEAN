@@ -71,4 +71,8 @@ export class ProductListComponent implements OnInit {
   addProductToCart(product: Product, count: number) {
     this.cartService.addProductToCart(product, count)
   }
+
+  checkOnSail(product: Product) {
+    return product.categoryList.some((category) => category.name === "Акции")
+  }
 }

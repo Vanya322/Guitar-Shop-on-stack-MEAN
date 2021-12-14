@@ -30,3 +30,13 @@ img {
 .title {
   padding-left: 20px;
 }
+.img-container {
+  position: relative;
+}
+.img-container .product-sail {
+  position: absolute;
+  bottom: 0;
+  right: -30px;
+  width: 100px;
+  height: 70px;
+}
