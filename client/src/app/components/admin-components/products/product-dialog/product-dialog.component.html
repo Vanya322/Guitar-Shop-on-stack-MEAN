@@ -1,25 +1,25 @@
-<h1 mat-dialog-title>{{ product.value.id ? "Edit" : "New" }} Category</h1>
+<h1 mat-dialog-title>{{ product.value.id ? "Edit" : "Новый" }} товар</h1>
 
 <div mat-dialog-content>
   <form [formGroup]="product">
 
     <mat-form-field appearance="fill" class="d-block">
-      <mat-label>Name</mat-label>
+      <mat-label>Название</mat-label>
       <input type="text" matInput formControlName="name">
     </mat-form-field>
 
     <mat-form-field appearance="fill" class="d-block">
-      <mat-label>Price</mat-label>
+      <mat-label>Цена</mat-label>
       <input type="text" matInput formControlName="price">
     </mat-form-field>
 
     <mat-form-field appearance="fill" class="d-block">
-      <mat-label>Description</mat-label>
+      <mat-label>Описание</mat-label>
       <input type="text" matInput formControlName="description">
     </mat-form-field>
 
     <mat-form-field appearance="fill">
-      <mat-label>Categories</mat-label>
+      <mat-label>Категории</mat-label>
       <mat-select  formControlName="categoryList" multiple>
         <mat-option
           *ngFor="let category of data.categories"
@@ -31,7 +31,7 @@
     </mat-form-field>
 
     <mat-form-field appearance="fill" class="d-block">
-      <mat-label>Count</mat-label>
+      <mat-label>Количество на складе</mat-label>
       <input type="text" matInput formControlName="count">
     </mat-form-field>
 
@@ -39,7 +39,7 @@
       mat-stroked-button
       (click)="fileInput.click()"
     >
-      {{ product.value.id ? "Change" : "Add" }} File
+      {{ product.value.id ? "Изменить" : "Добавить" }} картинку
     </button>
     <input class="d-none" type="file" #fileInput (change)="onChange($event)">
 
@@ -51,7 +51,7 @@
     mat-raised-button
     mat-dialog-close
   >
-    Cancel
+    Отменить
   </button>
   <button
     mat-raised-button
@@ -59,6 +59,6 @@
     color="primary"
     (click)="addOrSaveCategory()"
   >
-    {{ product.value.id ? "Save" : "Add" }}
+    {{ product.value.id ? "Save" : "Добавить" }}
   </button>
 </div>

@@ -43,7 +43,15 @@
 
   <div class="user-items">
     <div class="user-confirmed" *ngIf="user">
-      <button mat-mini-fab color="primary" routerLink="cart" *ngIf="user?.type != 'ADMIN'">
+      <button
+        mat-mini-fab
+        color="primary"
+        routerLink="cart"
+        [matBadge]="countProductsInCart"
+        [matBadgeHidden]="countProductsInCart === 0"
+        matBadgeColor="accent"
+        *ngIf="user?.type != 'ADMIN'"
+      >
         <mat-icon>add_shopping_cart</mat-icon>
       </button>
       <button mat-mini-fab color="primary" (click)="logout()">

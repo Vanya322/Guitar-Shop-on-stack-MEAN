@@ -11,8 +11,11 @@ import { MatDialog } from '@angular/material/dialog';
 })
 export class ProductListComponent implements OnInit {
 
-  products: Product[] | undefined;
+  products: Product[]  = [];
+  displayProducts: Product[] = [];
   productCounts: {[k: string]: any} = {};
+  productFilter: string[] = [];
+  title: string = "Все товары";
 
   @Output() onLoad = new EventEmitter()
 
@@ -27,7 +30,21 @@ export class ProductListComponent implements OnInit {
         this.products.forEach((it) => {
           this.productCounts[it.id] = 1;
         })
+        this.displayProducts = [...this.products];
         this.onLoad.emit(false);
+      })
+
+    productListService.onChangeProductFilter
+      .subscribe((filter: string) => {
+        const index = this.productFilter.findIndex((it) => it === filter);
+
+        if (index !== -1) {
+          this.productFilter.splice(index, 1);
+        } else {
+          this.productFilter.push(filter);
+        }
+
+        this.reviewProducts();
       })
   }
 
@@ -39,7 +56,19 @@ export class ProductListComponent implements OnInit {
     this.productListService.getProducts();
   }
 
-  addProductToCart(product: Product, count: Number) {
+  reviewProducts() {
+    if (this.productFilter.length) {
+      this.displayProducts = this.products.filter((product) => (
+        this.productFilter.every((filter) => product.categoryList.some((it) => it.name === filter))
+      ))
+      this.title = `Фильтр: ${ this.productFilter.join(", ")}`
+    } else {
+      this.displayProducts = this.products;
+      this.title = "Все товары";
+    }
+  }
+
+  addProductToCart(product: Product, count: number) {
     this.cartService.addProductToCart(product, count)
   }
 }

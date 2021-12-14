@@ -2,6 +2,7 @@ const errorHandler = require('../utils/error-handler');
 const cartModel = require('../models/Cart');
 const productModel = require('../models/Product');
 const categoryModel = require('../models/Category');
+const userModel = require('../models/User')
 
 module.exports.getCart = async (req, res) => {
     if(!req.params.userId){
@@ -12,6 +13,14 @@ module.exports.getCart = async (req, res) => {
     }
 
     try {
+        const user = await userModel.findOne({
+            _id: req.params.userId,
+        });
+
+        if(user.type === "ADMIN") {
+            return;
+        }
+
         const foundedCart = await cartModel.findOne({
             userId: req.params.userId,
         });
@@ -44,7 +53,6 @@ module.exports.addToCart = async (req, res) => {
         return;
     }
     try {
-
         const productId = req.params.productId;
         if(!productId) {
             res.status(404).json({

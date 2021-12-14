@@ -11,6 +11,7 @@ export class ProductListService {
 
   products: Product[] = [];
   onGetProducts = new EventEmitter();
+  onChangeProductFilter = new EventEmitter();
 
   constructor(
     private http: HttpClient,
@@ -25,8 +26,7 @@ export class ProductListService {
       })
   }
 
-  addProductToCart() {
-
+  changeFilter(filter: string) {
+    this.onChangeProductFilter.emit(filter);
   }
-
 }

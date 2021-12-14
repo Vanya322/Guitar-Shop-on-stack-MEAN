@@ -10,9 +10,6 @@ export class ProductsCategoryComponent implements OnInit {
 
   categories = [
     {
-      title: 'Акции',
-    },
-    {
       title: 'Инструменты',
       panel: [
         'Гитары',
@@ -39,5 +36,9 @@ export class ProductsCategoryComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+  }
+
+  changeFilter(filter: string) {
+    this.productListService.changeFilter(filter);
   }
 }

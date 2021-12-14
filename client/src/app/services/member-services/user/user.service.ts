@@ -36,7 +36,7 @@ export class UserService {
       .subscribe((user: UserDto) => {
         this.user = User.toModel(user);
         this.userSuccessEvent.emit(this.user);
-        // this.router.navigate(['/products']);
+        this.router.navigate(['/products']);
       },
       (e) => {
         this.toastr.errorToaster(e.error.message)
@@ -53,7 +53,7 @@ export class UserService {
       (e) => {
         this.toastr.errorToaster(e.error.message)
       })
-}
+  }
 
   logout() {
     this.user = undefined;
